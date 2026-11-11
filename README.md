@@ -11,7 +11,7 @@ A complete web-based Student Management System built using Java Servlet, JSP, My
    - Reports  [ Add Fee     | Fee Report | Course Wise fee Report | Student Due Fee Report ]
    - Profile
    
-- **Student Module:** 
+- **Admin Module:** 
   - Students [ View Single | View  All   | Add Student | Edit Student | Delete Student | Search ]
    - Courses  [ View Single | View All   | Search Course ]
    - Admins   [ View Single | View All   | Search Admin  ]
