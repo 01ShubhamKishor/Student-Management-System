@@ -8,7 +8,7 @@ public class FeeBean {
 		    private int totalFee;
 		    private int paidFee;
 		    private int dueFee;
-		    private String paymentDate; // ya Date use kar sakta hai
+		    private String paymentDate; 
 		    private String paymentMode;
 
 		    // Getter Setter

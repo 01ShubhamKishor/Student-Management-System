@@ -85,18 +85,15 @@
                                     <td class="px-5 py-4">${a.contact}</td>
                                     <td class="px-5 py-4">
                                         <div class="flex gap-1.5">
-                                            <c:choose>
-                                                <c:when test="${a.id == sessionScope.adminId}">
-                                                    <button onclick="openViewModal('${a.id}','${a.user_name}','${a.email}','${a.contact}','${a.dob}','${a.address}','${a.role}','${a.active}')" class="w-8 h-8 bg-zinc-900 text-white rounded-lg flex items-center justify-center"><i class="fa-solid fa-eye text-xs"></i></button>
-                                                </c:when>
-                                                <c:otherwise>
-                                                    <button onclick="openViewModal('${a.id}','${a.user_name}','${a.email}','${a.contact}','${a.dob}','${a.address}','${a.role}','${a.active}')" class="w-8 h-8 bg-slate-50 border rounded-lg flex items-center justify-center"><i class="fa-solid fa-eye text-xs"></i></button>
-                                                    <c:if test="${a.role != 'SUPER_ADMIN'}">
-                                                        <a href="${pageContext.request.contextPath}/LoadUpdateAdminProfile?id=${a.id}" class="w-8 h-8 bg-amber-50 text-amber-600 border border-amber-100 rounded-lg flex items-center justify-center"><i class="fa-solid fa-pen text-xs"></i></a>
-                                                        <button onclick="openDeleteModal('${a.id}')" class="w-8 h-8 bg-red-50 text-red-600 border border-red-100 rounded-lg flex items-center justify-center"><i class="fa-solid fa-trash text-xs"></i></button>
-                                                    </c:if>
-                                                </c:otherwise>
-                                            </c:choose>
+                                            <!-- VIEW - Sabko dikhega -->
+                                            <button onclick="openViewModal('${a.id}','${a.user_name}','${a.email}','${a.contact}','${a.dob}','${a.address}','${a.role}','${a.active}')" class="w-8 h-8 ${a.id == sessionScope.adminId ? 'bg-zinc-900 text-white' : 'bg-slate-50 border'} rounded-lg flex items-center justify-center"><i class="fa-solid fa-eye text-xs"></i></button>
+
+                                            <!-- EDIT / DELETE - SIRF SUPER_ADMIN ko dikhega -->
+                                            <!-- Condition: Login wala SUPER_ADMIN ho + Saamne wala khud na ho + Saamne wala SUPER_ADMIN na ho -->
+                                            <c:if test="${(sessionScope.adminRole == 'SUPER_ADMIN' || sessionScope.role == 'SUPER_ADMIN') && a.id != sessionScope.adminId && a.role != 'SUPER_ADMIN'}">
+                                                <a href="${pageContext.request.contextPath}/LoadUpdateAdminProfile?id=${a.id}" class="w-8 h-8 bg-amber-50 text-amber-600 border border-amber-100 rounded-lg flex items-center justify-center"><i class="fa-solid fa-pen text-xs"></i></a>
+                                                <button onclick="openDeleteModal('${a.id}')" class="w-8 h-8 bg-red-50 text-red-600 border border-red-100 rounded-lg flex items-center justify-center"><i class="fa-solid fa-trash text-xs"></i></button>
+                                            </c:if>
                                         </div>
                                     </td>
                                 </tr>
