@@ -8,6 +8,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import com.studentManagementSystem.dao.CourseDAO;
 import com.studentManagementSystem.dao.FeeDAO;
 import com.studentManagementSystem.dao.StudentDAO;
@@ -23,7 +25,10 @@ public class LoadStudentProfieServlet extends HttpServlet {
  
 	 protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	        try {
-	            int id = Integer.parseInt(request.getParameter("id"));
+	            Long id = Long.parseLong(request.getParameter("id"));
+	            
+	            
+	            
 	            StudentDAO sDao = new StudentDAO();
 	            FeeDAO fDao = new FeeDAO();
 	            CourseDAO cDao = new CourseDAO();
@@ -51,8 +56,34 @@ public class LoadStudentProfieServlet extends HttpServlet {
 	            request.setAttribute("dueFee", dueFee);
 	            
 	            
-
-	            request.getRequestDispatcher("student-profile.jsp").forward(request, response);
+                //manage student profile from both student and admin
+	            HttpSession session=request.getSession();
+	             
+	            
+	            if(session ==null || session.getAttribute("adminRole")==null && session.getAttribute("role")==null){
+	            	response.sendRedirect(request.getContextPath()+"/login.jsp");
+	            	return;
+	            }
+	            String adminrole=(String)session.getAttribute("adminRole");
+	            String studentrole=(String)session.getAttribute("role");
+	            
+	            if("ADMIN".equals(adminrole) || "SUPER_ADMIN".equals(adminrole))
+	            {
+	            	request.getRequestDispatcher("student-profile.jsp").forward(request, response);
+	            }
+	            if("STUDENT".equals(studentrole))
+	            {
+	            	request.getRequestDispatcher("/Student/student-profile.jsp").forward(request, response);
+	            }
+	            else {
+	            	response.sendRedirect(request.getContextPath()+"/login.jsp");
+	            }
+	            
+	            	
+	            	
+	            
+	         
+	            
 	        } catch(Exception e){
 	            e.printStackTrace();
 	        }

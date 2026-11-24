@@ -10,7 +10,7 @@ public class StudentBean {
 	private String email;
 	private String phone;
 	private LocalDate dob;
-	private String course_code; // this will hold course_code
+	private String course_code; 
 	private String semester;
 	private String address;
 	private boolean active;
@@ -19,17 +19,12 @@ public class StudentBean {
 	private int admissionYear;
 	private String status;
 	
-	private int dueAmount;  //for calculation purpose not stored in db
+	private int dueAmount;  
 
-	// getter setter
+	
 	public int getDueAmount() { return dueAmount; }
 	public void setDueAmount(int dueAmount) { this.dueAmount = dueAmount; }
 	
-	
-
-
-
-
 	public Long getId() {
 		return id;
 	}
@@ -198,19 +193,6 @@ public class StudentBean {
 	public void setActive(boolean active) {
 		this.active = active;
 	}
-	
-	
-	
-	
-
-	
-	
-
-	
-	
-	
-	
-	
 	
 
 }

@@ -8,7 +8,7 @@ import java.sql.*;
 
 public class CourseDAO {
 
-	// CourseDAO me ye ek hi method rakh
+	
 	public int[] getCourseCounts() {
 	    int[] counts = new int[2]; // [0]=total, [1]=active
 	    String query = "SELECT COUNT(*) as total, SUM(CASE WHEN Active = 1 THEN 1 ELSE 0 END) as active FROM course_detail";

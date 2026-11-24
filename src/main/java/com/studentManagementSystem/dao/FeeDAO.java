@@ -8,7 +8,7 @@ import com.studentManagementSystem.utils.DBconnection;
 public class FeeDAO {
 
 
- // Course Wise Report - FINAL FIXED
+ // Course Wise Report 
     public List<Map<String, Object>> getCourseWiseFeeReportFixed() {
         List<Map<String, Object>> list = new ArrayList<>();
         try {
@@ -29,7 +29,7 @@ public class FeeDAO {
                 int totalStudents = rs.getInt("total_students");
                 int collected = rs.getInt("total_collected");
                 
-                // Sahi Due Calculation
+                // Due Calculation
                 int totalExpected = totalStudents * courseFee;
                 int due = totalExpected - collected;
 
@@ -38,7 +38,7 @@ public class FeeDAO {
                 map.put("courseFee", courseFee);
                 map.put("totalStudents", totalStudents);
                 map.put("collected", collected);
-                map.put("due", due); // Ab ye sahi ayega
+                map.put("due", due); 
                 list.add(map);
             }
             con.close();
@@ -46,13 +46,13 @@ public class FeeDAO {
         return list;
     }
 
-    public List<FeeBean> getFeeByStudentId(int studentId) {
+    public List<FeeBean> getFeeByStudentId(Long id) {
         List<FeeBean> list = new ArrayList<>();
         try {
             Connection con = DBconnection.getConnection();
             String sql = "SELECT * FROM fee WHERE STUDENT_ID=? ORDER BY ID DESC";
             PreparedStatement ps = con.prepareStatement(sql);
-            ps.setInt(1, studentId);
+            ps.setLong(1, id);
             ResultSet rs = ps.executeQuery();
             while(rs.next()){
                 FeeBean f = new FeeBean();

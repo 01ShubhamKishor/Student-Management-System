@@ -148,7 +148,7 @@ Swal.fire({
             </div>
 
             <div class="flex gap-3 mt-6">
-              <a href="${pageContext.request.contextPath}/EditCourse?id=${course.id}" class="flex-1 inline-flex justify-center items-center gap-2 bg-slate-900 text-white px-5 py-3 rounded-xl text-sm font-bold hover:bg-black transition">
+              <a href="${pageContext.request.contextPath}/LoadEditCourse?id=${course.id}" class="flex-1 inline-flex justify-center items-center gap-2 bg-slate-900 text-white px-5 py-3 rounded-xl text-sm font-bold hover:bg-black transition">
                 <i class="fa-solid fa-pen-to-square"></i> Edit Course
               </a>
             </div>

@@ -34,7 +34,7 @@ public class LoadAddStudentFormServlet extends HttpServlet {
                 map.put("COURSE", rs.getString("COURSE"));
                 map.put("DEPARTMENT", rs.getString("DEPARTMENT"));
                 map.put("DURATION_YEAR", String.valueOf(rs.getInt("DURATION_YEAR")));
-                // YE SABSE IMPORTANT HAI - TOTAL_SEMESTER DIRECT TABLE SE
+                //  TOTAL_SEMESTER from direct TABLE SE
                 map.put("TOTAL_SEMESTER", String.valueOf(rs.getInt("TOTAL_SEMESTER")));
                 map.put("FEE", String.valueOf(rs.getInt("FEE")));
                 courseList.add(map);

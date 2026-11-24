@@ -28,8 +28,9 @@ public class DeleteCourseServlet extends HttpServlet {
             // Fresh list DB se
             ArrayList<CourseBean> courses = cd.getAllCourses();
             
-            // --- YAHAN FIX KIYA - Ek hi call me count ---
+           
             int[] counts = cd.getCourseCounts();
+            //here we can also use seperate call 
             
             HttpSession session = request.getSession();
             session.setAttribute("courses", courses);

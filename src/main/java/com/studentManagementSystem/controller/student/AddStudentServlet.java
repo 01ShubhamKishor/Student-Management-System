@@ -61,7 +61,7 @@ public class AddStudentServlet extends HttpServlet {
 	                session.setAttribute("totalStudents", sd.getTotalStudentCount());
 	                session.setAttribute("totalActiveStudentCount", sd.getActiveStudentCount());
 	                request.setAttribute("added", true);
-	                // Profile pe bhej de
+	                // Profile pe bhej diya
 	                response.sendRedirect(request.getContextPath() + "/LoadStudenProfile?id=" + id);
 	            } else {
 	                request.setAttribute("error", "Student add nahi hua");

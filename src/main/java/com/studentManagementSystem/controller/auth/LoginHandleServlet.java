@@ -14,6 +14,7 @@ import com.studentManagementSystem.dao.AuthenticationDAO;
 import com.studentManagementSystem.dao.CourseDAO;
 import com.studentManagementSystem.dao.StudentDAO;
 import com.studentManagementSystem.model.AdminBean;
+import com.studentManagementSystem.model.CourseBean;
 import com.studentManagementSystem.model.StudentBean;
 
 @WebServlet("/login")
@@ -32,7 +33,7 @@ public class LoginHandleServlet extends HttpServlet {
 
         AuthenticationDAO authDao = new AuthenticationDAO();
         try {
-            // Admin check - SUPER_ADMIN + ADMIN dono allow
+            // Admin check - SUPER_ADMIN + ADMIN both are allow allow
             AdminBean adminBean = authDao.validateAdmin(email, password);
             if (adminBean != null) {
                 String role = adminBean.getRole();
@@ -41,7 +42,7 @@ public class LoginHandleServlet extends HttpServlet {
                     StudentDAO sd = new StudentDAO();
                     CourseDAO cd = new CourseDAO();
                     
-                    // --- Ek hi call me Course counts ---
+                    // one call 
                     int[] courseCounts = cd.getCourseCounts();
 
                     HttpSession session = request.getSession();
@@ -53,7 +54,7 @@ public class LoginHandleServlet extends HttpServlet {
                     
                     
                     
-                    // Dashboard ke liye bas ye 7 chahiye
+                    //for Dashboard  these 7 needed
                     session.setAttribute("totalStudents", sd.getTotalStudentCount());
                     session.setAttribute("totalActiveStudentCount", sd.getActiveStudentCount());
                     session.setAttribute("totalCourses", courseCounts[0]);
@@ -62,7 +63,7 @@ public class LoginHandleServlet extends HttpServlet {
                     session.setAttribute("totalFeecollected", sd.getTotalFeecollected());
                     session.setAttribute("passoutCount", sd.getPassoutStudentCount());
                     System.out.print("Admin id from login servlet"+adminBean.getId());
-                    response.sendRedirect("Admin/admin-pannel.jsp");
+                    response.sendRedirect("Admin/admin-dashboard.jsp");
                     return;
                 }
             }
@@ -71,9 +72,25 @@ public class LoginHandleServlet extends HttpServlet {
             StudentBean studentBean = authDao.validateStudent(email, password);
             if (studentBean != null && "STUDENT".equals(studentBean.getRole())) {
                 HttpSession session = request.getSession();
+                StudentDAO sd = new StudentDAO();
+                CourseDAO cd = new CourseDAO();
+                int[] courseCounts = cd.getCourseCounts();
+                
+               CourseBean course= cd.getCourseByCode(studentBean.getCourse_code());
+               
+               session.setAttribute("course", course); //for course profile in student
+                
+                
+                
+                session.setAttribute("totalStudents", sd.getTotalStudentCount());
+                session.setAttribute("totalActiveStudentCount", sd.getActiveStudentCount());
+                session.setAttribute("totalCourses", courseCounts[0]);
+                session.setAttribute("activeCourses", courseCounts[1]);
+                session.setAttribute("inactiveCourses", courseCounts[0] - courseCounts[1]);
+                session.setAttribute("totalFeecollected", sd.getTotalFeecollected());
+                session.setAttribute("passoutCount", sd.getPassoutStudentCount());
                 session.setAttribute("student", studentBean);
                 session.setAttribute("role", studentBean.getRole());
-                session.setAttribute("studentId", studentBean.getId());
                 response.sendRedirect("Student/student-dashboard.jsp");
                 return;
             }

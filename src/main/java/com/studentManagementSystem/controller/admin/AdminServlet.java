@@ -11,7 +11,12 @@ import com.studentManagementSystem.model.AdminBean;
 
 @WebServlet("/Admin")
 public class AdminServlet extends HttpServlet {
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         AdminDAO dao = new AdminDAO();
         ArrayList<AdminBean> adminList = dao.getAllAdmin();
         request.setAttribute("adminList", adminList);

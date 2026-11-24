@@ -22,8 +22,8 @@ public class GetAllAdminServlet extends HttpServlet {
         AdminDAO ad = new AdminDAO();
         ArrayList<AdminBean> list = ad.getAllAdmin();
         
-        // YAHI FIX HAI - naam same rakhna hai JSP ke jaisa
-        request.setAttribute("adminList", list); // pehle Adminlist tha
+        
+        request.setAttribute("adminList", list);
         
         RequestDispatcher rd = request.getRequestDispatcher("Admin/admin.jsp");
         rd.forward(request, response);

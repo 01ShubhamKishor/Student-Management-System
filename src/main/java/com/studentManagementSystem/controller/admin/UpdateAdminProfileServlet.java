@@ -46,7 +46,7 @@ public class UpdateAdminProfileServlet extends HttpServlet {
 	              if(result>0)
 	              {
 	            	  System.out.print("updated succesfully");
-	            	  //getting updated admin detail fresh from DB and to previous session
+	            	  //getting updated admin detail fresh from DB and added to previous session
 	            	  
 	            	AdminBean admin= ad.getAdminById(id);
 	            	HttpSession session=request.getSession();

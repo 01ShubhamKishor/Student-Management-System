@@ -30,9 +30,9 @@ public class AddAdminServlet extends HttpServlet {
 
         new AdminDAO().addAdmin(bean);
         
-        // POPUP KE LIYE SESSION ME SET KARO
+        // FOR POPUP
         req.getSession().setAttribute("added", true);
-        resp.sendRedirect("Admin"); // ye tera Admin list page hai
+        resp.sendRedirect("Admin"); //redirecting to Admin Servlet
     }
 }
 

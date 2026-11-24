@@ -26,7 +26,7 @@ public class DeleteAdminServlet extends HttpServlet {
 		ArrayList<AdminBean> list = ad.getAllAdmin();
 		request.setAttribute("adminList", list);
 		
-		// POPUP KE LIYE - Yahi kaam karega
+		//For POPUP 
 		request.setAttribute("deleted", true);
 		
 		RequestDispatcher rd = request.getRequestDispatcher("/Admin/admin.jsp");
@@ -34,7 +34,7 @@ public class DeleteAdminServlet extends HttpServlet {
 	}
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	    // GET se aaye to bhi POST wala logic chala do - error mat de
+	    //for edge case if anyone try by get
 	    doPost(request, response);
 	}
 

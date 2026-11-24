@@ -2,11 +2,11 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%
-    String role = (String) session.getAttribute("role");
-    if(role == null || (!"ADMIN".equals(role) && !"SUPER_ADMIN".equals(role))){
-        response.sendRedirect(request.getContextPath()+"/login.jsp");
-        return;
-    }
+   // String role = (String) session.getAttribute("role");
+   // if(role == null || (!"ADMIN".equals(role) && !"SUPER_ADMIN".equals(role))){
+   //     response.sendRedirect(request.getContextPath()+"/login.jsp");
+    //    return;
+   // }
 %>
 <!DOCTYPE html>
 <html lang="en">

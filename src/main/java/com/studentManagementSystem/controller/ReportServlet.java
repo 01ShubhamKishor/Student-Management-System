@@ -23,7 +23,7 @@ public class ReportServlet extends HttpServlet {
         List<Map<String, Object>> dueStudents = feeDao.getDueFeeStudents();
         List<Map<String, Object>> topDueStudents = feeDao.getHighestDueTop10();
         
-        // Ye naya add kiya - searchable form ke liye
+        
         List<Map<String, Object>> allStudents = studentDao.getAllStudentsWithCourseFee();
         
         request.setAttribute("courseReport", courseReport);

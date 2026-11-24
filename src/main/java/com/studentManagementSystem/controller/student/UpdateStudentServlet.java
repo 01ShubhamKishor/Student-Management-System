@@ -27,7 +27,7 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
             String address = request.getParameter("ADDRESS");
             
             String dobstr = request.getParameter("DOB");
-            // int fee = Integer.parseInt(request.getParameter("TOTAL_FEE")); // HATA DIYA - ab fee table me hai
+            // int fee = Integer.parseInt(request.getParameter("TOTAL_FEE")); 
             String password = request.getParameter("PASSWORD");
             LocalDate dob = LocalDate.parse(dobstr);
             
@@ -46,7 +46,7 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response) 
         
             boolean active = "ACTIVE".equals(status);
 
-            // DAO method - TOTAL_FEE param nahi bhejna ab
+            
             int result = sd.updateStudentByAdmin(id, full_name, roll_no, email, phone, dob, course_code, semester, address, active, password, admissionYear, status); 
                 
             StudentBean s = sd.getStudentById(id);

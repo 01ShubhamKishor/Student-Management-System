@@ -15,7 +15,7 @@ import com.studentManagementSystem.utils.DBconnection;
 
 public class StudentDAO {
 
-	//Get All Student completed - YE SAHI HAI, ISKO Aise hi rehne de
+	//Get All Student completed 
 	public ArrayList<StudentBean> getAllStudents() {
 	    ArrayList<StudentBean> list = new ArrayList<>();
 	    String query = "SELECT s.ID, s.FULL_NAME, s.ROLL_NUMBER, s.EMAIL, s.PHONE, s.DOB, " +
@@ -50,7 +50,7 @@ public class StudentDAO {
 	    return list;
 	}
 
-	// 2. Saare Active Students - FIXED (TOTAL_FEE hata diya)
+	// 2. get all Active Students 
 	public ArrayList<StudentBean> getAllActiveStudents() {
 	    ArrayList<StudentBean> list = new ArrayList<>();
 	    String query = "SELECT ID, FULL_NAME, ROLL_NUMBER, EMAIL, PHONE, DOB, COURSE_CODE, SEMESTER, ADDRESS, ACTIVE, ADMISSION_YEAR, STATUS, ROLE, PASSWORD FROM student_details WHERE STATUS='ACTIVE'";
@@ -76,7 +76,7 @@ public class StudentDAO {
 	            s.setStatus(rs.getString("STATUS"));
 	            s.setRole(rs.getString("ROLE"));
 	            s.setPassword(rs.getString("PASSWORD"));
-	            // s.setTotal_fee(rs.getInt("TOTAL_FEE")); // HATA DIYA - ab fee table se ayega
+	            // s.setTotal_fee(rs.getInt("TOTAL_FEE")); // now it will come from fee table se ayega
 	            list.add(s);
 	        }
 	    } catch (Exception e) {
@@ -85,7 +85,7 @@ public class StudentDAO {
 	    return list;
 	}
 	    
-	// Adding new Student - FIXED for COURSE_CODE (TOTAL_FEE hata diya)
+	// Adding new Student 
 	public boolean addStudent(StudentBean s) {
 	    String query = "INSERT INTO student_details (FULL_NAME, ROLL_NUMBER, EMAIL, PHONE, DOB, COURSE_CODE, SEMESTER, ADDRESS, ACTIVE, PASSWORD, ROLE, ADMISSION_YEAR, STATUS) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)";
 	    try(Connection con=DBconnection.getConnection();
@@ -108,7 +108,7 @@ public class StudentDAO {
 	    return false;
 	}
 
-	// getStudentById FIXED
+	// getStudentById 
 	public StudentBean getStudentById(long id) {
 	    StudentBean sb = null;
 	    String query = "SELECT * from student_details WHERE ID=?";
@@ -135,7 +135,7 @@ public class StudentDAO {
 	            sb.setPassword(rs.getString("PASSWORD"));
 	            sb.setAdmissionYear(rs.getInt("ADMISSION_YEAR"));
 	            sb.setStatus(rs.getString("STATUS"));
-	            // TOTAL_FEE nahi lena
+	            // TOTAL_FEE we are not taking 
 	        }
 	    } catch (ClassNotFoundException | SQLException e) {
 	        e.printStackTrace();
@@ -160,7 +160,7 @@ public class StudentDAO {
 	    return userId;
 	}
 
-	// updateStudentByAdmin FIXED - total_fee param hata diya
+	// updateStudentByAdmin
 	public int updateStudentByAdmin(Long id ,String full_name, String roll_number, String email, String phone, LocalDate dob, String course_code, String semester, String address, boolean active, String password ,int admissionYear,String status ) {
 	    int result = 0;
 	    String query = "UPDATE student_details SET FULL_NAME=?, ROLL_NUMBER=?, EMAIL=?, PHONE=?, DOB=?, COURSE_CODE=?, SEMESTER=?, ADDRESS=?, ACTIVE=?, PASSWORD=?, ADMISSION_YEAR=?, STATUS=? WHERE ID=?";
@@ -187,7 +187,7 @@ public class StudentDAO {
 	    return result;
 	}
 
-	// getting overall collected money - FIXED (ab fee table se)
+	// getting overall collected money 
 	public long getTotalFeecollected() {
 	    long total = 0;
 	    String query = "SELECT SUM(PAID_FEE) AS total FROM fee";
@@ -214,17 +214,17 @@ public class StudentDAO {
 	        con = DBconnection.getConnection();
 	        con.setAutoCommit(false); // transaction start
 
-	        // 1. Pehle child table - fee delete karo
+	        // 1. Pehle child table - fee delete 
 	        ps1 = con.prepareStatement("DELETE FROM fee WHERE STUDENT_ID = ?");
 	        ps1.setLong(1, id);
 	        ps1.executeUpdate();
 
-	        // 2. Phir parent table - student delete karo
+	        // 2. again parent table - student delete
 	        ps2 = con.prepareStatement("DELETE FROM student_details WHERE ID = ?");
 	        ps2.setLong(1, id);
 	        result = ps2.executeUpdate();
 
-	        con.commit(); // dono ho gaye to save
+	        con.commit(); // if done then save
 
 	    } catch (Exception e) {
 	        try { if(con != null) con.rollback(); } catch(Exception ex){}
@@ -313,6 +313,43 @@ public class StudentDAO {
 	        }
 	    }catch(Exception e){ e.printStackTrace(); }
 	    return list;
+	}
+	
+	// getting student Old password
+	public String getPasswordById(long studentId) {
+	    String dbPassword = null;
+	    try {
+	        Connection con = DBconnection.getConnection();
+	        String sql = "SELECT PASSWORD FROM student_details WHERE ID = ?";
+	        PreparedStatement ps = con.prepareStatement(sql);
+	        ps.setLong(1, studentId);
+	        ResultSet rs = ps.executeQuery();
+	        if (rs.next()) {
+	            dbPassword = rs.getString("PASSWORD");
+	        }
+	        rs.close(); ps.close(); con.close();
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	    return dbPassword;
+	}
+
+	//  for updating password
+	public boolean updatePassword(long studentId, String newPassword) {
+	    boolean updated = false;
+	    try {
+	        Connection con = DBconnection.getConnection();
+	        String sql = "UPDATE student_details SET PASSWORD = ? WHERE ID = ?";
+	        PreparedStatement ps = con.prepareStatement(sql);
+	        ps.setString(1, newPassword);
+	        ps.setLong(2, studentId);
+	        int row = ps.executeUpdate();
+	        if (row > 0) updated = true;
+	        ps.close(); con.close();
+	    } catch (Exception e) {
+	        e.printStackTrace();
+	    }
+	    return updated;
 	}
     
     

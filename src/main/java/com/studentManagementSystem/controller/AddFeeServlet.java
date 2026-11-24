@@ -35,7 +35,6 @@ public class AddFeeServlet extends HttpServlet {
             int result = new FeeDAO().addFee(fee);
 
             if (result > 0) {
-                // TERA SERVLET /Reports HAI, ISLIYE YAHI PE REDIRECT
                 response.sendRedirect(request.getContextPath() + "/Reports?msg=success");
             } else {
                 response.sendRedirect(request.getContextPath() + "/Reports?msg=fail");
