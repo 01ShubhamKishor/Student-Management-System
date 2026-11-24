@@ -75,7 +75,7 @@ public class AdminDAO {
   	    	ps.setLong(1,id);
 	    	 result=ps.executeUpdate();
   	    	
-  	    } catch (ClassNotFoundException | SQLException e) {
+  	    } catch (SQLException e) {
 				
 				e.printStackTrace();
 			}
@@ -110,7 +110,7 @@ public class AdminDAO {
 	
 	
 	// getStudentById FIXED
-	public AdminBean getAdminById(long id) {
+	public AdminBean getAdminById(long id) throws ClassNotFoundException {
 	    AdminBean sb = null;
 	    String query = "SELECT * from admin_detail WHERE ID=?";
 	    try(Connection con = DBconnection.getConnection();
@@ -136,7 +136,7 @@ public class AdminDAO {
 	           
 	
 	        }
-	    } catch (ClassNotFoundException | SQLException e) {
+	    } catch (SQLException e) {
 	        e.printStackTrace();
 	    } 
 	    return sb;

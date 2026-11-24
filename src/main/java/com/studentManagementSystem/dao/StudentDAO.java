@@ -109,7 +109,7 @@ public class StudentDAO {
 	}
 
 	// getStudentById 
-	public StudentBean getStudentById(long id) {
+	public StudentBean getStudentById(long id) throws ClassNotFoundException {
 	    StudentBean sb = null;
 	    String query = "SELECT * from student_details WHERE ID=?";
 	    try(Connection con = DBconnection.getConnection();
@@ -137,7 +137,7 @@ public class StudentDAO {
 	            sb.setStatus(rs.getString("STATUS"));
 	            // TOTAL_FEE we are not taking 
 	        }
-	    } catch (ClassNotFoundException | SQLException e) {
+	    } catch (SQLException e) {
 	        e.printStackTrace();
 	    } 
 	    return sb;
@@ -197,7 +197,7 @@ public class StudentDAO {
 	        if (rs.next()) {
 	            total = rs.getLong("total");
 	        }
-	    } catch (ClassNotFoundException | SQLException e) {
+	    } catch (SQLException e) {
 	        e.printStackTrace();
 	    }
 	    return total;

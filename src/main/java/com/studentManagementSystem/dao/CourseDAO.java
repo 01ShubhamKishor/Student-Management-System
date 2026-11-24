@@ -100,7 +100,7 @@ public class CourseDAO {
 	            }
 	        }
 	        
-	    } catch (ClassNotFoundException | SQLException e) {
+	    } catch (SQLException e) {
 	        e.printStackTrace();
 	    } 
 	    return null;
@@ -165,7 +165,7 @@ public class CourseDAO {
 				
 			}
 	    	 
-	     } catch (ClassNotFoundException | SQLException e) {
+	     } catch (SQLException e) {
 			
 			e.printStackTrace();
 		} 
@@ -185,7 +185,7 @@ public class CourseDAO {
 	    	    	ps.setLong(1,id);
 		    	 result=ps.executeUpdate();
 	    	    	
-	    	    } catch (ClassNotFoundException | SQLException e) {
+	    	    } catch (SQLException e) {
 					
 					e.printStackTrace();
 				}

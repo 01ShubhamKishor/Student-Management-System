@@ -30,9 +30,16 @@ public class LoadUpdateAdminProfileServlet extends HttpServlet {
 	        }
 	        Long id = Long.parseLong(idParm.trim());
 	        AdminDAO ad = new AdminDAO();
-	        AdminBean uAdmin = ad.getAdminById(id);
-	        request.setAttribute("UAdmin", uAdmin);
-	        request.getRequestDispatcher("/Admin/edit-admin.jsp").forward(request, response);
+	        AdminBean uAdmin;
+			try {
+				uAdmin = ad.getAdminById(id);
+				 request.setAttribute("UAdmin", uAdmin);
+			     request.getRequestDispatcher("/Admin/edit-admin.jsp").forward(request, response);
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+	       
 	    }
 	
 	
