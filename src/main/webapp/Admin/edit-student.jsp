@@ -28,7 +28,7 @@
           <button onclick="toggleSidebar()" class="lg:hidden w-9 h-9 grid place-items-center rounded-xl bg-slate-900 text-white"><i class="fa-solid fa-bars"></i></button>
           <h2 class="font-bold text-[16px]">Edit Student</h2>
         </div>
-        <a href="${pageContext.request.contextPath}/student-profile.jsp" class="text-xs bg-white border px-3 py-2 rounded-full">Back</a>
+        <a href="${pageContext.request.contextPath}/LoadStudenProfile?id=${ustudent.id}" class="text-xs bg-white border px-3 py-2 rounded-full">Back</a>
       </div>
 
       <div class="p-4 lg:p-6 max-w-5xl mx-auto">

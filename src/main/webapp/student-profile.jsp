@@ -125,8 +125,8 @@ Swal.fire({ title: "Updated!", text: "Student profile updated successfully", ico
                     <div><p class="text-[10px] text-slate-400 font-bold">PAID</p><p class="font-bold text-emerald-600">₹${paidFee}</p></div>
                     <div><p class="text-[10px] text-slate-400 font-bold">DUE FEE</p><p class="font-extrabold text-lg ${dueFee > 0 ? 'text-red-600' : 'text-emerald-600'}">₹${dueFee}</p></div>
                 </div>
-                <div class="w-full bg-slate-200 rounded-full h-2 mt-3">
-                    <div class="h-2 rounded-full ${dueFee > 0 ? 'bg-red-500' : 'bg-emerald-500'}" style="width: ${courseTotalFee > 0 ? (paidFee * 100 / courseTotalFee) : 0}%"></div>
+                <div class="w-full bg-slate-200 rounded-full h-2 mt-3 overflow-hidden">
+                    <div class="h-2 rounded-full ${dueFee > 0 ? 'bg-red-500' : 'bg-emerald-500'}" style="width: ${courseTotalFee > 0 ? (paidFee > courseTotalFee ? 100 : (paidFee * 100 / courseTotalFee)):0}%"></div>
                 </div>
               </div>
 

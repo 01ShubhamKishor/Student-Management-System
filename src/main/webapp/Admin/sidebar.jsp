@@ -24,7 +24,16 @@
         <a href="${pageContext.request.contextPath}/GetAllStudents" data-path="/getallstudents" class="nav-item flex items-center gap-3 px-3.5 py-3.5 text-slate-400 hover:text-white hover:bg-white/5 rounded-xl text-[15px] font-medium transition"><i class="fa-solid fa-users w-5 text-[16px]"></i> Students <span class="ml-auto bg-blue-600 text-white text-[11px] px-2 py-0.5 rounded-full">${totalStudents}</span></a>
         <a href="${pageContext.request.contextPath}/courses" data-path="/courses" class="nav-item flex items-center gap-3 px-3.5 py-3.5 text-slate-400 hover:text-white hover:bg-white/5 rounded-xl text-[15px] font-medium transition"><i class="fa-solid fa-book w-5 text-[16px]"></i> Courses</a>
         <a href="${pageContext.request.contextPath}/Reports" data-path="/reports" class="nav-item flex items-center gap-3 px-3.5 py-3.5 text-slate-400 hover:text-white hover:bg-white/5 rounded-xl text-[15px] font-medium transition"><i class="fa fa-address-card w-5 text-[16px]"></i> Reports</a>
-        <a href="${pageContext.request.contextPath}/GetAllAdmin" data-path="/admin" class="nav-item flex items-center gap-3 px-3.5 py-3.5 text-slate-400 hover:text-white hover:bg-white/5 rounded-xl text-[15px] font-medium transition"><i class="fa-solid fa-user-shield w-5 text-[16px]"></i> Admins <span class="ml-auto bg-amber-500 text-white text-[10px] px-2 py-0.5 rounded-full font-bold">SUPER</span></a>
+        <a href="${pageContext.request.contextPath}/GetAllAdmin" data-path="/admin" class="nav-item flex items-center gap-3 px-3.5 py-3.5 text-slate-400 hover:text-white hover:bg-white/5 rounded-xl text-[15px] font-medium transition"><i class="fa-solid fa-user-shield w-5 text-[16px]"></i> Admins 
+            <c:choose>
+                <c:when test="${sessionScope.adminRole == 'SUPER_ADMIN'}">
+                    <span class="ml-auto bg-amber-500 text-white text-[10px] px-2 py-0.5 rounded-full font-bold">SUPER</span>
+                </c:when>
+                <c:otherwise>
+                    <span class="ml-auto bg-blue-600 text-white text-[10px] px-2 py-0.5 rounded-full font-bold">ADMIN</span>
+                </c:otherwise>
+            </c:choose>
+        </a>
         <a href="${pageContext.request.contextPath}/Admin/admin-profile.jsp" data-path="/admin/admin-profile.jsp" class="nav-item flex items-center gap-3 px-3.5 py-3.5 text-slate-400 hover:text-white hover:bg-white/5 rounded-xl text-[15px] font-medium transition"><i class="fa-solid fa-gear w-5 text-[16px]"></i> Profile</a>
     </nav>
 
@@ -59,7 +68,6 @@
         if(!p) return;
         let match = false;
         if(p === "/admin"){
-            // /StudentMS/Admin ko bhi match karega
             match = path.endsWith("/admin") || path.endsWith("/admin/");
         } else {
             match = path.includes(p);
