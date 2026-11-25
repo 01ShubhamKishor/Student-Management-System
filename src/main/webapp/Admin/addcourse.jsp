@@ -19,7 +19,7 @@
     <main class="flex-1 min-w-0">
         <header class="sticky top-0 z-30 bg-white/80 backdrop-blur-xl border-b border-slate-200 px-4 md:px-8 py-4 flex items-center gap-3">
             <button onclick="toggleSidebar()" class="md:hidden w-10 h-10 bg-slate-900 text-white rounded-xl"><i class="fa-solid fa-bars"></i></button>
-            <a href="admin-homepage.jsp" class="md:hidden w-10 h-10 bg-slate-100 rounded-xl flex items-center justify-center"><i class="fa-solid fa-arrow-left text-sm"></i></a>
+           
             <div>
                 <h2 class="text-[16px] md:text-xl font-bold flex items-center gap-2"><i class="fa-solid fa-book-open text-blue-600"></i> Add New Course</h2>
                 <p class="text-[12px] text-slate-500 mt-0.5">Fill all details to create a new course - Code will be unique</p>

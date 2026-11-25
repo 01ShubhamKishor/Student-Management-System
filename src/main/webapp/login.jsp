@@ -37,7 +37,7 @@
         <!-- Mobile pe ispe margin hai kyunki parent pe p-4 hai aur ye rounded hai -->
         <div class="p-6 md:p-12 flex flex-col justify-center bg-white">
             <h2 class="text-[22px] font-bold text-slate-900">Login to your account</h2>
-            <p class="text-slate-500 mt-1.5 mb-7 text-[14px]">Don't have an account? <a href="register.jsp" class="text-blue-600 font-semibold">Sign up for free</a></p>
+            <p class="text-slate-500 mt-1.5 mb-7 text-[14px]">Don't have an account? <a class="text-blue-600 font-semibold">Contact to Admin</a></p>
 
             <c:if test="${not empty errorMsg}">
                 <div class="bg-red-50 border border-red-100 text-red-600 text-[13px] p-3.5 rounded-xl mb-6 flex gap-2">
@@ -74,7 +74,16 @@
                 <button type="submit" class="w-full bg-[#2563eb] hover:bg-[#1d4ed8] text-white font-semibold py-4 rounded-xl shadow-[0_8px_20px_rgba(37,99,235,0.3)] active:scale-[0.98] text-[15px]">
                     Login <i class="fa-solid fa-arrow-right ml-2 text-xs"></i>
                 </button>
+                
+                  <button
+            
+            class="w-full bg-yellow-50 border-2 border-dashed border-yellow-300 text-slate-700 py-2.5 rounded-xl text-sm font-bold"
+          >
+            Demo ke liye: <span class="text-blue-600">admin@gmail.com</span> password: <span class="text-blue-600">Admin</span> 
+            
+          </button>
             </form>
+          
         </div>
     </div>
 

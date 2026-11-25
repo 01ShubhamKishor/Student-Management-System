@@ -106,7 +106,7 @@
     <div>
         <h3 class="font-bold text-[16px] mb-4">Student Overview</h3>
         <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
-            <div onclick="location.href='GetAllStudents?status=ACTIVE'" class="cursor-pointer group bg-white rounded-[24px] border border-slate-100 p-5 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all">
+            <div  class="cursor-pointer group bg-white rounded-[24px] border border-slate-100 p-5 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all">
                 <div class="flex justify-between items-start mb-4">
                     <div class="w-12 h-12 bg-emerald-50 text-emerald-600 rounded-2xl flex items-center justify-center text-lg"><i class="fa-solid fa-user-graduate"></i></div>
                     <span class="bg-emerald-50 text-emerald-700 text-[11px] font-bold px-3 py-1 rounded-full">${totalActiveStudentCount} Students</span>
@@ -116,7 +116,7 @@
                 <div class="mt-4"><div class="flex justify-between text-[11px] font-bold text-slate-400 mb-1.5"><span>Progress</span><span>85%</span></div><div class="w-full bg-slate-100 rounded-full h-2"><div class="bg-emerald-500 h-2 rounded-full" style="width:85%"></div></div></div>
                 <div class="mt-5 flex items-center gap-2 text-[13px] font-bold text-emerald-600 group-hover:gap-3 transition-all">View All Active <i class="fa-solid fa-arrow-right text-xs"></i></div>
             </div>
-            <div onclick="location.href='GetAllStudents?status=PASSOUT'" class="cursor-pointer group bg-white rounded-[24px] border border-slate-100 p-5 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all">
+            <div class="cursor-pointer group bg-white rounded-[24px] border border-slate-100 p-5 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all">
                 <div class="flex justify-between items-start mb-4">
                     <div class="w-12 h-12 bg-blue-50 text-blue-600 rounded-2xl flex items-center justify-center text-lg"><i class="fa-solid fa-award"></i></div>
                     <span class="bg-blue-50 text-blue-700 text-[11px] font-bold px-3 py-1 rounded-full">Completed</span>
@@ -130,7 +130,7 @@
                 </div>
                 <div class="mt-5 flex items-center gap-2 text-[13px] font-bold text-blue-600 group-hover:gap-3 transition-all">View Passout List <i class="fa-solid fa-arrow-right text-xs"></i></div>
             </div>
-            <div onclick="location.href='GetAllStudents?status=DROPOUT'" class="cursor-pointer group bg-white rounded-[24px] border border-slate-100 p-5 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all">
+            <div  class="cursor-pointer group bg-white rounded-[24px] border border-slate-100 p-5 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all">
                 <div class="flex justify-between items-start mb-4">
                     <div class="w-12 h-12 bg-red-50 text-red-500 rounded-2xl flex items-center justify-center text-lg"><i class="fa-solid fa-user-xmark"></i></div>
                     <span class="bg-red-50 text-red-600 text-[11px] font-bold px-3 py-1 rounded-full">Attention</span>

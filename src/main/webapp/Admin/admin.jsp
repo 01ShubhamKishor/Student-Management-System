@@ -50,7 +50,7 @@
                 <button onclick="toggleSidebar()" class="md:hidden w-10 h-10 bg-slate-900 text-white rounded-xl"><i class="fa-solid fa-bars"></i></button>
                 <div>
                     <h2 class="font-bold text-[16px] md:text-xl leading-none">Admin Management</h2>
-                    <p class="hidden md:block text-xs text-slate-500 mt-1">Logged in as ${sessionScope.adminRole} ${sessionScope.role} - Total: ${fn:length(adminList)}</p>
+                    <p class="hidden md:block text-xs text-slate-500 mt-1">Manage your Adminstrator Informtion </p>
                 </div>
             </div>
             <div>
